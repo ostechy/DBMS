@@ -1,0 +1,21 @@
+db.createCollection("library");
+db.library.insert({"bid":1,"name":"dbms"});
+db.library.insert({"bid":2,"name":"Toc","author":"XYZ"});
+db.library.insert({"bid":3,"name":"CN","author":"ABCD","cost":700});
+db.library.insert({"bid":4,"name":"OOP","author":"Addison-Wesley","cost":400});
+db.library.insert({"bid":5,"name":"SPOS","author":"PQR","cost":500});
+db.library.insert({"bid":6,"name":"AI","author":"SSC Education","cost":800});
+db.library.insert({"bid":7,"name":"C++","author":"MD Publications","cost":400});
+db.library.find().pretty();
+
+db.library.update({'cost':400},{$set:{'cost':600}});
+
+db.library.updateOne({'cost':{$gt:600}},{$set:{'cost':900}});
+
+db.library.find().pretty();
+db.library.find({"cost":{$not:{$gt:800}}});
+db.library.find().sort({"bid":1});
+db.library.find({$or:[{"cost":500},{"cost":800}]}).pretty();
+db.library.count();
+
+db.library.remove({"bid":1});
